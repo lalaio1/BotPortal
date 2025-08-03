@@ -1,0 +1,377 @@
+/* servers.css */
+:root {
+    --primary-gradient: linear-gradient(135deg, #7289da, #5865F2);
+    --glass-bg: rgba(47, 49, 54, 0.35);
+    --card-bg: rgba(47, 49, 54, 0.4);
+    --card-border: rgba(255, 255, 255, 0.18);
+    --text: #f0f2f5;
+    --text-secondary: #b9bbbe;
+    --background: #1e1f29;
+    --transition: all 0.3s ease;
+    --glow-effect: 0 0 20px rgba(114, 137, 218, 0.3)
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('https://i.pinimg.com/originals/86/a7/68/86a768fb53edb0f9565285bdbe365ee7.gif') center/cover no-repeat fixed;
+    color: var(--text);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    perspective: 1000px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    background: rgba(47, 49, 54, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 12px 20px;
+    border: 1px solid var(--card-border);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.actions button,
+.actions .btn-stop,
+.btn-submit,
+.btn-logout {
+    font-size: 0.9rem;
+    color: var(--text);
+    background: rgba(114, 137, 218, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 8px 14px;
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+    transition: var(--transition);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.actions button:hover, 
+.actions .btn-stop:hover,
+.btn-submit:hover,
+.btn-logout:hover {
+    background: rgba(114, 137, 218, 0.35);
+    box-shadow: 0 0 15px rgba(114, 137, 218, 0.4);
+    transform: translateY(-2px);
+}
+
+/* No servers */
+.no-servers {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Grid */
+.guild-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.guild-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+    position: relative;
+}
+
+.guild-card::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 16px;
+    background: linear-gradient(
+        45deg, 
+        rgba(114, 137, 218, 0.2), 
+        rgba(255, 255, 255, 0.05), 
+        rgba(114, 137, 218, 0.2)
+    );
+    z-index: -1;
+    animation: borderPulse 6s infinite linear;
+}
+
+@keyframes borderPulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+    100% { opacity: 0.3; }
+}
+
+.guild-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--glow-effect);
+}
+
+.guild-banner {
+    height: 120px;
+    background: linear-gradient(135deg, rgba(114, 137, 218, 0.2), rgba(88, 101, 242, 0.15));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.guild-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #fff;
+}
+
+.guild-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.guild-info {
+    padding: 16px;
+}
+
+.guild-name {
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+}
+
+.guild-info p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+/* Details */
+.guild-details,
+.guild-extra-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.guild-details span,
+.guild-extra-stats span {
+    background: rgba(30, 31, 41, 0.4);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* Main stats */
+.guild-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.stat {
+    text-align: center;
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.actions button,
+.actions .btn-stop {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    background: var(--primary-gradient);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    text-decoration: none;
+}
+
+.actions button:hover,
+.actions .btn-stop:hover {
+    box-shadow: var(--glow-effect);
+    transform: translateY(-2px);
+}
+
+/* Send form */
+.send-form {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: var(--glass-bg);
+    padding: 0 16px;
+    border-radius: 0 0 12px 12px;
+}
+
+.send-form.active {
+    max-height: 220px;
+    padding: 12px 16px;
+}
+
+.send-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.send-form textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid var(--card-border);
+    background: var(--background);
+    color: var(--text);
+    resize: vertical;
+    min-height: 60px;
+    font-family: inherit;
+}
+
+.send-form label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.btn-submit {
+    align-self: flex-end;
+    padding: 6px 14px;
+    border: none;
+    background: var(--primary-gradient);
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.btn-submit:hover {
+    box-shadow: var(--glow-effect);
+    transform: translateY(-2px);
+}
+
+/* Stats panel */
+.send-form,
+.stats-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: rgba(30, 31, 41, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0 16px;
+    border-radius: 0 0 12px 12px;
+    font-size: 0.85rem;
+    color: var(--text);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at center, 
+        rgba(114, 137, 218, 0.1), 
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPgogIDxkZWZzPgogICAgPHBhdHRlcm4gaWQ9InBhdHRlcm4iIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+CiAgICAgIDxjaXJjbGUgY3g9IjEwIiBjeT0iMTAiIHI9IjEuNSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPgogICAgICA8Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIxLjUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz4KICAgIDwvcGF0dGVybj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPgo8L3N2Zz4=');
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: -2;
+}
+
+.stats-panel.active {
+    max-height: 160px;
+    padding: 12px 16px;
+}
+
+.stats-panel p {
+    margin: 4px 0;
+}
+
+@media (max-width: 768px) {
+    .guild-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(114, 137, 218, 0.15);
+    animation: float 15s infinite linear;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-100vh) translateX(100vw) rotate(720deg); opacity: 0; }
+}

@@ -1,0 +1,5 @@
+fazer uma logs para saber tudo que ocorre
+
+colocar na pagina inicial um botão para ativar que ativa a rede onion 
+
+atualizar para ser em .hta para er q nem aplicativo 

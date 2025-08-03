@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotPortal | Portal Premium para Gerenciamento de Bots</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+    <!-- CSS import -->   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" crossorigin="anonymous">
+
+    <!-- JS import -->
+    <script src="{{ url_for('static', filename='js/index.js') }}" crossorigin="anonymous"></script>
+    
+</head>
+
+<body>
+    <!-- Animated background -->
+    <div class="background"></div>
+    <div class="particles" id="particles"></div>
+    
+    <!-- Main container -->
+    <div class="container" style="position: relative; overflow: visible;">
+    <!-- Efeito de brilho flutuante -->
+    <div class="floating-glow"></div>
+
+        <!-- Left side - Branding -->
+        <div class="brand-section">
+            
+            <div>
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="logo-text">BotPortal</div>
+                </div>
+                
+                <div class="brand-content">
+                    <h1 class="brand-title">Conecte seu bot e gerencie servidores</h1>
+                    <p class="brand-subtitle">Interface avançada para gerenciamento de bots do Discord com controle total e segurança</p>
+                    
+                    <ul class="features">
+                        <li>
+                            <i class="fas fa-shield-alt"></i>
+                            <strong>Autenticação segura</strong> com criptografia de ponta a ponta
+                        </li>
+                        <li>
+                            <i class="fas fa-bolt"></i>
+                            <strong>Painel de controle</strong> intuitivo e de alto desempenho
+                        </li>
+                        <li>
+                            <i class="fas fa-server"></i>
+                            <strong>Gestão completa</strong> de múltiplos servidores
+                        </li>
+                        <li>
+                            <i class="fas fa-comment-alt"></i>
+                            <strong>Comunicação eficiente</strong> com envio de mensagens em massa
+                        </li>
+                    </ul>
+                </div>
+            </div>
+             
+            <div class="copyright">
+                &copy; 2025 BotPortal. Todos os direitos reservados.
+                <div class="security-badge">
+                    <i class="fas fa-lock"></i> Conexão segura SSL/TLS
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right side - Login form -->
+        <div class="login-section">
+            <div class="login-logo">
+                <i class="fas fa-robot"></i>
+            </div>
+            
+            <div class="login-header">
+                <h2 class="login-title">Conectar Bot</h2>
+                <p class="login-subtitle">Insira o token do seu bot para começar</p>
+            </div>
+            
+            <form class="login-box" method="POST" action="/login">
+                <div class="input-group">
+                    <label class="input-label" for="token">Token do Bot</label>
+                    <div class="password-container">
+                        <input type="password" id="token" name="token" class="input-field" 
+                               placeholder="MTEwODQzNzA5OTQyNDI0MjU3MA.Gm7AbY..." required
+                               aria-label="Token de autenticação do bot">
+                        <button type="button" class="toggle-password" id="togglePassword" aria-label="Mostrar token">
+                            <i class="far fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <button type="submit" class="login-button">
+                    <i class="fas fa-plug"></i> Conectar Bot
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="floating-glow"></div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Servidores do Bot</title>
+  <!-- Fonte e ícones -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/servers.css') }}">
+  <!-- JS -->
+  <script defer src="{{ url_for('static', filename='js/servers.js') }}"></script>
+</head>
+<body>
+  <!-- partículas de fundo -->
+  <div class="background"></div>
+  <div id="particles" class="particles"></div>
+
+  <div class="container">
+    <!-- topbar com logout -->
+    <header class="header">
+      <a href="/logout" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+    </header>
+
+    {% if guilds %}
+    <div class="guild-grid">
+      {% for guild in guilds %}
+      <article class="guild-card">
+        <!-- banner com ícone -->
+        <div class="guild-banner">
+          {% if guild.icon %}
+          <img src="{{ guild.icon }}" alt="Ícone {{ guild.name }}" class="guild-icon">
+          {% else %}
+          <div class="guild-icon">{{ guild.name[0] }}</div>
+          {% endif %}
+        </div>
+
+        <!-- corpo do card -->
+        <div class="guild-info">
+          <h2 class="guild-name">{{ guild.name }}</h2>
+          <p class="guild-id"><strong>ID:</strong> {{ guild.id }}</p>
+          <p class="guild-owner"><strong>Dono:</strong> {{ guild.owner }}</p>
+
+          <div class="guild-details">
+            <span><i class="fas fa-calendar-alt"></i> Criado em: {{ guild.created_at }}</span>
+            <span><i class="fas fa-rocket"></i> Boosts: Nível {{ guild.boost_level }} ({{ guild.boost_count }})</span>
+          </div>
+
+          <div class="guild-stats">
+            <div class="stat"><div class="stat-value">{{ guild.members }}</div><div class="stat-label">MEMBROS</div></div>
+            <div class="stat"><div class="stat-value">{{ guild.online }}</div><div class="stat-label">ONLINE</div></div>
+            <div class="stat"><div class="stat-value">{{ guild.offline }}</div><div class="stat-label">OFFLINE</div></div>
+            <div class="stat"><div class="stat-value">{{ guild.bots }}</div><div class="stat-label">BOTS</div></div>
+          </div>
+
+          <div class="guild-extra-stats">
+            <span><i class="fas fa-user-tag"></i> Cargos: {{ guild.roles }}</span>
+            <span><i class="fas fa-hashtag"></i> Canais: {{ guild.channels }}</span>
+            <span><i class="fas fa-smile"></i> Emojis: {{ guild.emojis }}</span>
+          </div>
+
+          <div class="actions">
+            <button class="btn-send" onclick="toggleForm('form-{{ guild.id }}', this)"><i class="fas fa-envelope"></i> Mensagem</button>
+          </div>
+
+          <div id="form-{{ guild.id }}" class="send-form">
+            <form method="POST" action="{{ url_for('send_messages', guild_id=guild.id) }}">
+              <textarea name="message" placeholder="Digite sua mensagem..." required></textarea>
+              <div class="form-row">
+              </div>
+              <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Enviar</button>
+            </form>
+          </div>
+
+          <div id="stats-{{ guild.id }}" class="stats-panel">
+            {% if guild.stats %}
+            <p><strong>Início:</strong> {{ guild.stats.start_time or '-' }}</p>
+            <p><strong>Término:</strong> {{ guild.stats.end_time or '-' }}</p>
+            <p><strong>Total:</strong> {{ guild.stats.total }}</p>
+            <p><strong>Sucessos:</strong> {{ guild.stats.success }}</p>
+            <p><strong>Falhas:</strong> {{ guild.stats.fails }}</p>
+            {% else %}
+            <p>Sem estatísticas.</p>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-servers">Nenhum servidor encontrado.</p>
+    {% endif %}
+  </div>
+</body>
+</html>
